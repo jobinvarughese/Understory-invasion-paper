@@ -44,3 +44,30 @@ summary(phi, alpha=1)
 
 
 
+#Example
+####Phi coefficient for Shola####
+  data<-read.csv(file ="~/Desktop/iiser/8 sem/Vegetation paper/2017_only_nilgiri_anamalai_palani/shola regeneration munnar-valparai-berijam3 for NMDS.csv", head = T, row.names = 1)
+  mat1<-data[rowSums(data[,c(2:34, 36:47)])>0,] 
+  
+  
+  matrix <- data.matrix(mat1[,c(2:34, 36:47)]) 
+  str(matrix)
+  vector<-as.vector(mat1$Type1)
+  
+  length(vector[vector=="Acacia"])
+  length(vector[vector=="Eucalyptus"])
+  length(vector[vector=="Pine"])
+  length(vector[vector=="Mixed"])
+  
+  phi = multipatt(matrix, vector,func = "r.g", 
+                  control = how(nperm=999)) 
+  
+  summary(phi)
+  round((phi$str),3)
+  
+  
+  summary(phi, alpha=1)
+
+
+
+
